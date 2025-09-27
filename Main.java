@@ -22,10 +22,10 @@ public class Main {
         Line line = new Line();
         line.draw(image);
 
-        // for (int i = 0; i < 50; i++) {
-        //     Circle circle = Circle.random(image.getWidth(), image.getHeight());
-        //     circle.draw(image);
-        // }
+        for (int i = 0; i < 50; i++) {
+            Circle circle = Circle.random(image.getWidth(), image.getHeight());
+            circle.draw(image);
+        }
         image.save("image.png");
     }
 }
