@@ -42,8 +42,10 @@ public class Line implements Drawable {
         while (true) {
             displayable.display(x, y, color);
 
-            if (x == this.end.x && y == this.end.y)
+            if (x == this.end.x && y == this.end.y) {
                 break;
+
+            }
 
             int e2 = 2 * err;
 
