@@ -30,34 +30,26 @@ public class Line implements Drawable {
     @Override
     public void draw(Displayable displayable) {
 
-        int dx = Math.abs(this.end.x - this.start.x);
-        int dy = Math.abs(this.end.y - this.start.y);
-        int sx = this.start.x < this.end.x ? 1 : -1;
-        int sy = this.start.y < this.end.y ? 1 : -1;
-        int err = dx - dy;
+        int step = Math.max(
+            Math.abs(this.start.x - this.end.x),
+            Math.abs(this.start.y - this.end.y)
+        );
 
-        int x = this.start.x;
-        int y = this.start.y;
+        if (step == 0) {
+            displayable.display(this.start.x, this.start.y, color);
+            return;
+        }
 
-        while (true) {
-            displayable.display(x, y, color);
+        float heightX = (float)(this.start.x - this.end.x) / step;
+        float heightY = (float)(this.start.y - this.end.y) / step;
 
-            if (x == this.end.x && y == this.end.y) {
-                break;
+        float x = this.end.x;
+        float y = this.end.y;
 
-            }
-
-            int e2 = 2 * err;
-
-            if (e2 > -dy) {
-                err -= dy;
-                x += sx;
-            }
-
-            if (e2 < dx) {
-                err += dx;
-                y += sy;
-            }
+        for (int i = 0; i < step; i++) {
+            displayable.display(Math.round(x), Math.round(y), color);
+            x += heightX;
+            y += heightY;
         }
 
     }
