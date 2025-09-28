@@ -14,8 +14,6 @@ public class Triangle  implements Drawable {
         this.color = getColor();
     }
 
-
-
     @Override
     public void draw(Displayable displayable) {
         Line line1 = new Line(this.p2,this.p1, this.color);
